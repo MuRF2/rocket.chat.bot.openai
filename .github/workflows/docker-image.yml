@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Login into Github Container Registry
+      run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Push image to Github Container Registry
+      run: |
+        docker build . --tag ghcr.io/murf2/rocket.chat.bot.openai:latest
+        docker push ghcr.io/murf2/rocket.chat.bot.openai:latest
+      
