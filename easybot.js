@@ -1,7 +1,8 @@
-const { driver } = require('@rocket.chat/sdk');
-const got = require('got');
-const dotenv = require('dotenv').config();
-const respmap  = require('./reply');
+import { driver } from '@rocket.chat/sdk';
+import got from 'got';
+import { respmap } from './reply.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Environment Setup
 const HOST = process.env.SERVER_HOST;

@@ -1,14 +1,14 @@
 FROM node:18.12.1
 
-RUN useradd hubot && mkdir /home/hubot &&chown -R hubot:hubot /home/hubot
+RUN useradd bot && mkdir /home/bot &&chown -R bot:bot /home/bot
 
-USER hubot
+USER bot
 
-WORKDIR /home/hubot
+WORKDIR /home/bot
 
-RUN npm install @rocket.chat/sdk && npm install got
+RUN npm install @rocket.chat/sdk && npm install got && npm install dotenv
 
-ADD ./ /home/hubot
+ADD ./ /home/bot
 
 ENV SERVER_HOST=$SERVER_HOST
 ENV BOT_USER=$BOT_USER

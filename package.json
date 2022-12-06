@@ -1,8 +1,9 @@
 {
   "name": "rocket.chat.bot.openai",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "easybot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
