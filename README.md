@@ -1,5 +1,5 @@
 # Rocket.Chat.Bot.Openai
-This chat bot for Rocket Chat uses the OpenAI Davinci text model. It is designed to provide a conversational experience for users, allowing them to ask questions and receive answers in natural language. The bot is powered by the OpenAI Davinci model, which is a deep learning-based natural language processing system. The model is trained on a large corpus of text, allowing it to understand and respond to user queries in a natural way. The bot is designed to be easy to use and integrate into existing Rocket Chat environments. It can be used to provide a conversational experience for users, allowing them to ask questions and receive answers in natural language.
+This Chat Bot for Rocket Chat makes OpenAI API requests to the OpenAI Davinci text model. This model is designed to provide a conversational experience for users, allowing them to ask questions and receive answers in natural language. The bot uses the OpenAI Davinci model, a deep learning-based natural language processing system, to understand and respond to user queries in a natural way. The bot is easy to use and integrate into existing Rocket Chat environments, and can be used to provide a conversational experience for users.
 
 This documentation was written using ChatGPT, which is available at chat.openai.com.
 
