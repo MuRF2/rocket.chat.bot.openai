@@ -4,27 +4,26 @@ This Chat Bot for Rocket Chat makes OpenAI API requests to the OpenAI Davinci te
 This documentation was written using ChatGPT, which is available at chat.openai.com.
 
 ## Control - Bot commands
-The bot is designed to listen for messages that begin with the "!" symbol. When it detects one, it will send the entire message to the OpenAI API for processing. The bot will then forward the response back to the room where the original message was sent.
+The bot is designed to listen for messages that begin with "@BOTNAME". When the bot detects that it is called out, it will send the entire message to the OpenAI API for processing. The bot will then forward the response back to the room where the original message was sent.
 
-In addition to this basic function, the bot also supports the following commands:
+In addition to this function, the bot also supports the following basic commands:
 ```
-!help - provides information on how to use the bot and its available commands
-!about - provides information on the bot's purpose and development
-!instructions - provides a list of instructions on how to use the bot
-
+@BOTNAME help - provides information on how to use the bot and its available commands
+@BOTNAME about - provides information on the bot's purpose and development
+@BOTNAME instructions - provides a list of instructions on how to use the bot
 ```
 
 ## Setup
 ### Docker setup
-To start the container, use the following command:
+To start the container, use the following command and include the necessary environment variables:
 ```
 docker run -it \
 -e SERVER_HOST=yourserver.com \
 -e BOT_USER=bot_account_name \
 -e PASS=bot_account_password \
--e BOTNAME=name  bot response to \
+-e BOTNAME=name_bot_response_to \
 -e SSL=true \
--e ROOMS=room \
+-e ROOMS=room1,rom2,rom3 \
 -e OPENAI_SECRET_KEY=api_key \
 ghcr.io/murf2/rocket.chat.bot.openai:latest
 ```
@@ -32,18 +31,7 @@ Alternatively, you can use the provided Dockerfile to create a image. To do this
 ```
 docker build . -t yourtag
 ```
-To start the container, use the following command and include the necessary environment variables:
-```
-docker run -it \
--e SERVER_HOST=yourserver.com \
--e BOT_USER=bot_account_name \
--e PASS=bot_account_password \
--e BOTNAME=name  bot response to \
--e SSL=true \
--e ROOMS=room \
--e OPENAI_SECRET_KEY=api_key \
-you/yourtag:1
-```
+
 ### Manual install
 To use this bot, you need to have the latest version of Node.js (v18.12.1) installed. You can check your current version with the following command:
 ```
@@ -55,16 +43,16 @@ git clone https://github.com/MuRF2/rocket.chat.bot.openai
 ```
 2. Install the required dependencies:
 ```
-npm install @rocket.chat/sdk && npm install got
+npm install @rocket.chat/sdk && npm install got && npm install dotenv
 ```
 3. Create a .env file that contains your server login information and OpenAI API key. The file should have the following format:
 ```
 SERVER_HOST='yourserver.com'
 BOT_USER='bot_account_name'
 PASS='bot_account_password'
-BOTNAME='name  bot response to'
+BOTNAME='name_bot_response_to'
 SSL='true'
-ROOMS='room'
+ROOMS='room1,room2,rom3'
 OPENAI_SECRET_KEY='api_key'
 ```
 4. Start the bot:

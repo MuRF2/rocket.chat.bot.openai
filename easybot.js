@@ -10,10 +10,9 @@ const USER = process.env.BOT_USER;
 const PASS = process.env.PASS;
 const BOTNAME = process.env.BOTNAME;
 const SSL = process.env.SSL;
-const ROOMS = [process.env.ROOMS];
+const ROOMS = process.env.ROOMS.split(',');
 var myUserId;
 const OPENAI_SECRET_KEY = process.env.OPENAI_SECRET_KEY;
-const do_char = '!';
 
 // Bot configuration
 const runbot = async () => {
@@ -47,7 +46,7 @@ async function callOpenAI(input) {
         try {
             const response = await got.post(url, {json: params, headers: headers}).json();
             output = `${prompt}${response.choices[0].text}`;
-            console.log(output);
+            //console.log(output);
         } catch (err) {
             output = err;
             console.log(err);
@@ -58,21 +57,28 @@ async function callOpenAI(input) {
 // Process messages
 const processMessages = async(err, message, messageOptions) => {
     if (!err) {
-        if (message.u._id === myUserId) return;
-        const roomname = await driver.getRoomName(message.rid);
-        console.log('got message ' + message.msg)
-        var response;
-        if (message.msg.substring(0,1).includes(do_char)) {
-            if (message.msg.substring(1) in respmap) {
-                response = respmap[message.msg.substring(1)];
-                console.log(response)
-            } else {
-                response = await callOpenAI(message.msg.substring(1));
-                console.log(response)
-            }
-            const sentmsg = await driver.sendToRoomId(response, message.rid)
-        } else {
+        if (message.u._id === myUserId) {
+            console.log('Bots own message ignored');
             return;
+        }
+        const roomname = await driver.getRoomName(message.rid);
+        console.log('got message ' + message.msg);
+        var response;
+        if (message.msg.toLowerCase().startsWith('@' + BOTNAME) && message.msg.substring(BOTNAME.length + 2).length !== 0) {
+            console.log('substring:' + message.msg.substring(BOTNAME.length + 2));
+            if (message.msg.substring(BOTNAME.length + 2) in respmap) {
+                console.log('send help text:');
+                const response = respmap[message.msg.substring(BOTNAME.length + 2)];
+                console.log(response);
+                const sentmsg = await driver.sendToRoom(response, roomname);
+            } else {
+                console.log('OpenAI call processing...');
+                response = await callOpenAI(message.msg.substring(BOTNAME.length + 2));
+                console.log(response);
+                const sentmsg = await driver.sendToRoom(response, roomname);
+            }
+        } else {
+            console.log('ignoring...');
         }
     }
 }
