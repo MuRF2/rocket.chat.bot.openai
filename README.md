@@ -23,7 +23,7 @@ docker run -it \
 -e PASS=bot_account_password \
 -e BOTNAME=name_bot_response_to \
 -e SSL=true \
--e ROOMS=room1,rom2,rom3 \
+-e ROOMS=room1,room2,room3 \
 -e OPENAI_SECRET_KEY=api_key \
 ghcr.io/murf2/rocket.chat.bot.openai:latest
 ```
@@ -52,7 +52,7 @@ BOT_USER='bot_account_name'
 PASS='bot_account_password'
 BOTNAME='name_bot_response_to'
 SSL='true'
-ROOMS='room1,room2,rom3'
+ROOMS='room1,room2,room3'
 OPENAI_SECRET_KEY='api_key'
 ```
 4. Start the bot:
