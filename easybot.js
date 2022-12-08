@@ -64,7 +64,7 @@ const processMessages = async(err, message, messageOptions) => {
         const roomname = await driver.getRoomName(message.rid);
         console.log('got message ' + message.msg);
         var response;
-        if (message.msg.toLowerCase().startsWith('@' + BOTNAME) && message.msg.substring(BOTNAME.length + 2).length !== 0) {
+        if (message.msg.startsWith('@' + BOTNAME) && message.msg.substring(BOTNAME.length + 2).length !== 0) {
             console.log('substring:' + message.msg.substring(BOTNAME.length + 2));
             if (message.msg.substring(BOTNAME.length + 2) in respmap) {
                 console.log('send help text:');
