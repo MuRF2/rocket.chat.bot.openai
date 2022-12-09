@@ -43,7 +43,7 @@ git clone https://github.com/MuRF2/rocket.chat.bot.openai
 ```
 2. Install the required dependencies:
 ```
-npm install @rocket.chat/sdk && npm install got && npm install dotenv
+npm install @rocket.chat/sdk@0.2.9-2 && npm install got@11.8.6 && npm install dotenv@16.0.3
 ```
 3. Create a .env file that contains your server login information and OpenAI API key. The file should have the following format:
 ```

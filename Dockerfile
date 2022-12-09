@@ -6,7 +6,7 @@ USER bot
 
 WORKDIR /home/bot
 
-RUN npm install @rocket.chat/sdk && npm install got && npm install dotenv
+RUN npm install @rocket.chat/sdk@0.2.9-2 && npm install got@11.8.6 && npm install dotenv@16.0.3
 
 ADD ./ /home/bot
 
