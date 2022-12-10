@@ -3,9 +3,7 @@ This Chat Bot for Rocket Chat makes OpenAI API requests to the OpenAI Davinci te
 
 This documentation was written using ChatGPT, which is available at chat.openai.com.
 
-
-https://user-images.githubusercontent.com/33971651/206843111-ebbbcd09-1a36-4db4-abd9-36108d49c4cd.mp4
-
+https://user-images.githubusercontent.com/33971651/206847590-2c6aaea7-e6a0-4625-91c3-be49e3ac2c4a.mp4
 
 ## Control - Bot commands
 The bot is designed to listen for messages that begin with "@BOTNAME". When the bot detects that it is called out, it will send the entire message to the OpenAI API for processing. The bot will then forward the response back to the room where the original message was sent.
