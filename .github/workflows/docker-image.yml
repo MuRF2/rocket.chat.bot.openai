@@ -20,7 +20,7 @@ jobs:
 
     - name: Push image to Github Container Registry
       run: |
-        docker build . --tag ghcr.io/murf2/rocket.chat.bot.openai:1.0.1
-        docker push ghcr.io/murf2/rocket.chat.bot.openai:1.0.1
+        docker build . --tag ghcr.io/murf2/rocket.chat.bot.openai:1.0.2
+        docker push ghcr.io/murf2/rocket.chat.bot.openai:1.0.2
         docker build . --tag ghcr.io/murf2/rocket.chat.bot.openai:latest
         docker push ghcr.io/murf2/rocket.chat.bot.openai:latest

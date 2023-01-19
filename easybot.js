@@ -16,16 +16,22 @@ const OPENAI_SECRET_KEY = process.env.OPENAI_SECRET_KEY;
 
 // Bot configuration
 const runbot = async () => {
-    const conn = await driver.connect({ host: HOST, useSsl: SSL })
-    myUserId = await driver.login({ username: USER, password: PASS });
-    const roomsJoined = await driver.joinRooms( ROOMS );
-    console.log('joined rooms');
-    const subscribed = await driver.subscribeToMessages();
-    console.log('subscribed');
-    const msgloop = await driver.reactToMessages( processMessages );
-    console.log('connected and waiting for messages');
-    const sent = await driver.sendToRoom( BOTNAME + ' is listening ...', ROOMS[0]);
-    console.log('Greeting message sent');
+    try {
+        const conn = await driver.connect({ host: HOST, useSsl: SSL })
+        myUserId = await driver.login({ username: USER, password: PASS });
+        const roomsJoined = await driver.joinRooms( ROOMS );
+        console.log('joined rooms');
+        const subscribed = await driver.subscribeToMessages();
+        console.log('subscribed');
+        const msgloop = await driver.reactToMessages( processMessages );
+        console.log('connected and waiting for messages');
+        const sent = await driver.sendToRoom( BOTNAME + ' is listening ...', ROOMS[0]);
+        console.log('Greeting message sent');
+    } catch (err) {
+        console.log(err);
+        console.log('retrying...')
+        runbot()
+    }
 }
 
 //OpenAI API call
